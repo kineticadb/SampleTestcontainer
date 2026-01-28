@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kinetica.db</groupId>
+    <artifactId>kinetica-testcontainer</artifactId>
+    <version>1.0.0</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <runtime.version>1.7.14</runtime.version>
+        <slf4jVersion>1.7.25</slf4jVersion>
+    </properties>
+
+    <repositories>
+    	<repository>
+            <id>kinetica-releases</id>
+            <url>http://files.kinetica.com/nexus/content/repositories/releases/</url>
+        </repository>
+		<repository>
+            <id>MSFT</id>
+            <name>Maven Repository MSFT</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <url>https://repo1.maven.org/maven3</url>
+        </repository>
+        <repository>
+            <id>clojars.org</id>
+            <url>https://clojars.org/repo</url>
+        </repository>
+    </repositories>
+        
+    <dependencies>
+		<!-- Testcontainers core -->
+	    <dependency>
+	        <groupId>org.testcontainers</groupId>
+	        <artifactId>testcontainers</artifactId>
+	        <version>1.20.2</version>  <!-- or latest -->
+	    </dependency>
+	
+		<!-- Source: https://mvnrepository.com/artifact/com.kinetica/kinetica-jdbc -->
+		<dependency>
+		    <groupId>com.kinetica</groupId>
+		    <artifactId>kinetica-jdbc</artifactId>
+		    <version>7.2.3.10</version>
+		</dependency>    
+	
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
